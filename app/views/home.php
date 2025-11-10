@@ -1,1 +1,19 @@
-<h1>Home Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app/public/css/style.css" class="css">
+    <title>Allociné</title>
+</head>
+<body>
+   <h1>Home Page Allociné</h1> 
+   <div class="box">
+    <div class="item"></div>
+     <div class="item"></div>
+      <div class="item"></div>
+       <div class="item"></div>
+   </div>
+</body>
+</html>
+
