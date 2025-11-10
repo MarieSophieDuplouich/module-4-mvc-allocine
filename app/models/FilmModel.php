@@ -1,6 +1,6 @@
 <?php
 
-class ProductModel
+class FilmModel
 {
 
     private PDO $bdd;
@@ -16,8 +16,8 @@ class ProductModel
         // Connection à la base de donnée
         $this->bdd = new PDO("mysql:host=bdd;dbname=app-database", "root", "root");
         // Création d'une requête préparée qui récupère tout les produits
-        $this->getProducts = $this->bdd->prepare("SELECT * FROM 
-        `Produit` LIMIT :limit");
+        $this->getFilms = $this->bdd->prepare("SELECT * FROM 
+        `Film` LIMIT :limit");
 
         $this->getFilm = $this->bdd->prepare("SELECT * FROM Film WHERE id = :id");
         $this->addFilm = $this->bdd->prepare("INSERT INTO Film (nom, date_sortie,genre, auteur) VALUES (:nom, :date_sortie,:genre, :auteur)");
@@ -107,6 +107,7 @@ class ProductModel
      * @param int $id l'identifiant du produit, ce paramètre ne défini pas la nouvelle valeur de l'id car un id SQL est immuable, mais permet de définir quelle produit modifier.
      * */
     public function edit(
+        $id,
         $nom,
         $date_sortie,
         $genre,

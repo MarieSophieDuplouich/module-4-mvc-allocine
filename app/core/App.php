@@ -7,8 +7,9 @@
 // require_once(__DIR__."/../models/ProductModel.php");
 // require_once(__DIR__."/../controllers/ProductController.php");
 require_once(__DIR__ . "/Router.php");
+require_once(__DIR__ . "/../models/FilmModel.php"); // Assure-toi que ce fichier existe
 
-const ROOT_APP_PATH = "first_mvc";
+const ROOT_APP_PATH = "module-4-mvc-allocine";
 
 
 class App
@@ -88,8 +89,33 @@ class App
         //     $productModel = new ProductModel();
 
         //     // poursavoir si mon crud fonctionne
-        //        $productModel->add(name:"brosse",price:80,image:"http://unsplash.it/100/200");
-        //                $productModel->del(id:8);
+            //    $productModel->add(name:"brosses",price:88,image:"http://unsplash.it/100/200");
+            //            $productModel->del(id:3);
+
+
+
+//     // poursavoir si mon crud fonctionne
+//             // --- TEST CRUD ---
+// $filmModel = new FilmModel(); // création de l’objet
+
+// try {
+// $filmModel->add(
+//     nom: "Harry Potter",
+//     date_sortie: "2000-01-01",
+//     genre: "Horreur",
+//     auteur: "JK Rowling"
+// );
+
+//     $filmModel->del(id: 1);
+
+//     echo "<p>CRUD exécuté avec succès ✅</p>";
+// } catch (Exception $e) {
+//     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
+// }
+
+
+
+
         //        $product =  $productModel->get(id:1);
         //        console($product);
 
