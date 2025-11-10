@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: 1px red solid;
+    /* outline: 1px red solid; */
 }
 
 body {
@@ -13,6 +13,7 @@ body {
     min-height: 100vh;
     transform-style: preserve-3d;
     color : #fecc00;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
 
@@ -108,7 +109,7 @@ object-fit:cover;
 position: relative;
 width:50px;
 height:50px;
-border:2px solid #fff;
+border:2px solid #d61220;
 border-radius:50%;
 cursor: pointer;
 display: flex;
@@ -122,6 +123,7 @@ opacity:0.5;
 .buttons span:hover{
 
     opacity:1;
+    
 }
 
 .buttons span::before{
@@ -131,8 +133,8 @@ opacity:0.5;
     left:20px;
     width: 10px;
     height:10px;
-    border-top: 2px solid #fff;
-    border-left: 2px solid #fff;
+    border-top: 2px solid #d61220;
+    border-left: 2px solid #d61220;
     rotate: -45deg;
 
 }
@@ -145,8 +147,8 @@ opacity:0.5;
     right:20px;
     width: 10px;
     height:10px;
-    border-top: 2px solid #fff;
-    border-left: 2px solid #fff;
+    border-top: 2px solid #d61220;
+    border-left: 2px solid #d61220;
     rotate: 135deg;
 
 }
