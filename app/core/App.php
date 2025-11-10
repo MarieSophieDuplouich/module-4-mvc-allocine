@@ -95,7 +95,6 @@ class App
 
 
 //     // poursavoir si mon crud fonctionne
-//             // --- TEST CRUD ---
 // $filmModel = new FilmModel(); // création de l’objet
 
 // try {
@@ -113,6 +112,17 @@ class App
 //     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
 // }
 
+$filmModel = new FilmModel(); // création de l’objet
+
+try {
+
+
+    $filmModel->del(id: 7);
+
+    echo "<p>CRUD exécuté avec succès ✅</p>";
+} catch (Exception $e) {
+    echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
+}
 
 
 
