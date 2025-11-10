@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/style.css" class="css">
-    <title>Allociné</title>
+    <title>Accueil Allociné</title>
 </head>
 
 <body>
     <header>
     
     </header>
-    <h1>Home Page Allociné</h1>
+    <h1>Accueil Allociné</h1>
     
 
 
@@ -47,7 +47,7 @@
 
             prev.addEventListener('click',function(){
         let items = document.querySelectorAll('.item');
-        document.querySelector  ('.box').prepend(items[items.lenght -1]);
+        document.querySelector  ('.box').prepend(items[items.length -1]);
 
         })
     </script>
