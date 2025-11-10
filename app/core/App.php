@@ -112,17 +112,38 @@ class App
 //     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
 // }
 
+// $filmModel = new FilmModel(); // création de l’objet
+
+// try {
+
+
+//     $filmModel->del(id: 7);
+
+//     echo "<p>CRUD exécuté avec succès ✅</p>";
+// } catch (Exception $e) {
+//     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
+// }
+
+    // poursavoir si mon crud fonctionne
 $filmModel = new FilmModel(); // création de l’objet
 
 try {
+$filmModel->edit(
+    id:9,
+    nom: "Harry Potter",
+    date_sortie: "2000-01-01",
+    genre: "Horreur",
+    auteur: "JK Rowling"
+);
 
-
-    $filmModel->del(id: 7);
 
     echo "<p>CRUD exécuté avec succès ✅</p>";
 } catch (Exception $e) {
     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
 }
+
+
+
 
 
 

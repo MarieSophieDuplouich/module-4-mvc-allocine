@@ -60,8 +60,8 @@ class FilmModel
      * */
     public function get(int $id): FilmEntity | NULL
     {
-        $this->getfilm->execute([':id' => $id]);
-        $rawFilm = $this->getfilm->fetch(PDO::FETCH_ASSOC);
+        $this->getFilm->execute([':id' => $id]);
+        $rawFilm = $this->getFilm->fetch(PDO::FETCH_ASSOC);
 
         if (!$rawFilm) {
             return null;
