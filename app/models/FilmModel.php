@@ -22,7 +22,7 @@ class ProductModel
         $this->getFilm = $this->bdd->prepare("SELECT * FROM Film WHERE id = :id");
         $this->addFilm = $this->bdd->prepare("INSERT INTO Film (nom, date_sortie,genre, auteur) VALUES (:nom, :date_sortie,:genre, :auteur)");
         $this->delFilm = $this->bdd->prepare("DELETE  FROM Film WHERE id =:id");
-        $this->editFilm = $this->bdd->prepare("UPDATE Film SET  nom = :nom, price = :price, image = :image WHERE id = :id");
+        $this->editFilm = $this->bdd->prepare("UPDATE Film SET  nom = :nom, date_sortie = :date_sortie, genre  = :genre, auteur = :auteur WHERE id = :id");
     }
 
     /**
@@ -32,46 +32,47 @@ class ProductModel
     {
         // Définir la valeur de LIMIT, par défault 50
         // LIMIT étant un INT ont n'oublie pas de préciser le type PDO::PARAM_INT.
-        $this->getProducts->bindValue("limit", $limit, PDO::PARAM_INT);
+        $this->getFilms->bindValue("limit", $limit, PDO::PARAM_INT);
         // Executer la requête
-        $this->getProducts->execute();
+        $this->getFilms->execute();
         // Récupérer la réponse 
-        $rawProducts = $this->getProducts->fetchAll();
+        $rawFilms = $this->getFilms->fetchAll();
 
         // Formater la réponse dans un tableau de ProductEntity
-        $productsEntity = [];
-        foreach ($rawProducts as $rawProduct) {
-            $productsEntity[] = new ProductEntity(
-                $rawProduct["name"],
-                $rawProduct["price"],
-                $rawProduct["image"],
-                $rawProduct["id"]
+        $filmsEntity = [];
+        foreach ($rawFilms as $rawfilm) {
+            $filmsEntity[] = new FilmEntity(
+                $rawFilm["nom"],
+                $rawFilm["date_sortie"],
+                $rawFilm["genre"],
+                $rawFilm["auteur"]
             );
         }
 
         // Renvoyer le tableau de ProductEntity
-        return $productsEntity;
+        return $filmsEntity;
     }
 
     /**
      * Recupérer un produit via son id.
-     * @return ProductEntity ou NULL si aucune ne correspond à l'$id
+     * @return FilmEntity ou NULL si aucune ne correspond à l'$id
      * @param int id : la clé primaire de l'entity demandée.
      * */
-    public function get(int $id): ProductEntity | NULL
+    public function get(int $id): FilmEntity | NULL
     {
-        $this->getProduct->execute([':id' => $id]);
-        $rawProduct = $this->getProduct->fetch(PDO::FETCH_ASSOC);
+        $this->getfilm->execute([':id' => $id]);
+        $rawFilm = $this->getfilm->fetch(PDO::FETCH_ASSOC);
 
-        if (!$rawProduct) {
+        if (!$rawFilm) {
             return null;
         }
 
-        return new ProductEntity(
-            $rawProduct["name"],
-            (float)$rawProduct["price"],
-            $rawProduct["image"],
-            (int)$rawProduct["id"]
+        return new FilmEntity(
+            $rawFilm["nom"],
+            $rawFilm["date_sortie"],
+            $rawFilm["genre"],
+             $rawFilm["auteur"],
+            (int)$rawFilm["id"]
         );
     }
 
@@ -80,10 +81,10 @@ class ProductModel
      * @return void : ne renvoi rien
      * les informations de l'entity
      * */
-    public function add(string $name, float $price, string $image): void
+    public function add($nom,$date_sortie,$genre,$auteur): void
     {
-        $this->addProduct->execute([
-            ':name' => $name,
+        $this->addFilm->execute([
+            ':name' => $nom,
             ':price' => $price,
             ':image' => $image
         ]);
