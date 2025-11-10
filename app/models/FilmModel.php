@@ -142,9 +142,14 @@ class FilmEntity
      private $auteur;
 
     //LOGIQUE MÉTIER
-    private const NAME_MIN_LENGTH = 3;
-    private const PRICE_MIN = 0;
-    private const DEFAULT_IMG_URL = "/public/images/default.png";
+
+
+
+    // private const NAME_MIN_LENGTH = 3;
+    // private const PRICE_MIN = 0;
+    // private const DEFAULT_IMG_URL = "/public/images/default.png"; //ancien code 
+     private const NAME_MIN_LENGTH = 2;
+    private const GENRES_AUTORISES = ['Action', 'Comédie', 'Drame', 'Horreur', 'Animation', 'Documentaire'];
 
 
 
@@ -171,14 +176,38 @@ class FilmEntity
     public function setDateSortie($date_sortie)
     {
      
-        $this->date_sortie= $date_sortie;
+     $timestamp = strtotime($date_sortie);
+        if (!$timestamp) {
+            throw new Exception("La date de sortie n'est pas valide.");
+        }
+
+        // Exemple de règle : la date ne peut pas être dans le futur
+        $today = strtotime(date('Y-m-d'));
+        if ($timestamp > $today) {
+            throw new Exception("La date de sortie ne peut pas être dans le futur.");
+        }
+
+        $this->date_sortie = date('Y-m-d', $timestamp);
     }
+
     public function setGenre(string $genre)
     {
-        if (strlen($genre) <= 0) {
-          
+        $genre = ucfirst(strtolower(trim($genre)));
+
+        if (!in_array($genre, self::GENRES_AUTORISES)) {
+            throw new Exception("Le genre '$genre' n'est pas autorisé. Genres possibles : " . implode(', ', self::GENRES_AUTORISES));
         }
+
         $this->genre = $genre;
+    }
+
+public function setAuteur(string $auteur): void
+    {
+        if (empty(trim($auteur))) {
+            throw new Exception("Le nom de l'auteur ne peut pas être vide.");
+        }
+
+        $this->auteur = trim($auteur);
     }
 
     //GETTERS
@@ -189,6 +218,7 @@ class FilmEntity
     public function getDateSortie()
     {
         return $this->date_sortie;
+    }
     public function getGenre()
     {
         return $this->genre;

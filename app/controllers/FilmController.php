@@ -27,7 +27,7 @@ class FilmController
 
         // Récupération d'un film
         $filmModel = new FilmModel();
-        $film = $FilmModel->get($id);
+        $film = $filmModel->get($id);
 
 
         // Affichage de la vue
