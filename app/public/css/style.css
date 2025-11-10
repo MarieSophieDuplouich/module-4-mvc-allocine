@@ -2,19 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: 1px red solid;
 }
 
 body {
-    background: blue;
-    display: flex;
+    background: #000200;
+     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     transform-style: preserve-3d;
+    color : #fecc00;
 
 }
 
 .box {
+    padding: 500px;
     position: relative;
     display: flex;
     transform-style: preserve-3d;
@@ -119,4 +122,31 @@ opacity:0.5;
 .buttons span:hover{
 
     opacity:1;
+}
+
+.buttons span::before{
+
+    content: '';
+    position: absolute;
+    left:20px;
+    width: 10px;
+    height:10px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    rotate: -45deg;
+
+}
+
+.buttons span:last-child::before{
+
+    content: '';
+    position: absolute;
+    left:initial;
+    right:20px;
+    width: 10px;
+    height:10px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    rotate: 135deg;
+
 }
