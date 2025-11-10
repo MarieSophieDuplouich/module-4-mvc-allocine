@@ -107,7 +107,7 @@ class App
 
 //     $filmModel->del(id: 1);
 
-//     echo "<p>CRUD exécuté avec succès ✅</p>";
+//     echo "<p>CRUD exécuté avec succès </p>";
 // } catch (Exception $e) {
 //     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
 // }
@@ -119,28 +119,28 @@ class App
 
 //     $filmModel->del(id: 7);
 
-//     echo "<p>CRUD exécuté avec succès ✅</p>";
+//     echo "<p>CRUD exécuté avec succès </p>";
 // } catch (Exception $e) {
 //     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
 // }
 
     // poursavoir si mon crud fonctionne
-$filmModel = new FilmModel(); // création de l’objet
+// $filmModel = new FilmModel(); // création de l’objet
 
-try {
-$filmModel->edit(
-    id:9,
-    nom: "Harry Potter",
-    date_sortie: "2000-01-01",
-    genre: "Horreur",
-    auteur: "JK Rowling"
-);
+// try {
+// $filmModel->edit(
+//     id:9,
+//     nom: "Harry Potter",
+//     date_sortie: "2000-01-01",
+//     genre: "Horreur",
+//     auteur: "JK Rowling"
+// );
 
 
-    echo "<p>CRUD exécuté avec succès ✅</p>";
-} catch (Exception $e) {
-    echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
-}
+//     echo "<p>CRUD exécuté avec succès </p>";
+// } catch (Exception $e) {
+//     echo "<p style='color:red;'>Erreur : " . $e->getMessage() . "</p>";
+// }
 
 
 

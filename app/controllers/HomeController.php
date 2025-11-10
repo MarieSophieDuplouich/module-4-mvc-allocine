@@ -12,6 +12,9 @@ class HomeController{
     }
     
     public function home($params = []){
+        $filmModel = new FilmModel();
+        $getFilms = $filmModel->getAll(); // récupère tous les films
+        console($getFilms);
         require_once(__DIR__."/../views/home.php");
     }
 }

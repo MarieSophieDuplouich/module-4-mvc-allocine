@@ -1,36 +1,31 @@
-<?php
-// Lier le Model au Controller
-// J'ai dans ma table sql plusieurs produits. Alt text
+<?php require_once(__DIR__ . "/../models/FilmModel.php");
 
-// Maintenant que l'on sait que notre Controller fonctionne nous allons rajouter de la logique métier et récupérer un produit en fonction de l'id et le rendre disponible à la vue.
-
-// app/controllers/ProductController.php
-
-require_once(__DIR__ . "/../models/FilmModel.php");
 class FilmController
 {
-
-
     public function view(string $method, array $params = [])
     {
-        // Je place la fonction call_user_func dans un try catch 
-        // au cas une méthode inconnu est tapée dans l'URL
         try {
-            call_user_func([$this, $method], $params);
+            // call_user_func_array permet de décomposer le tableau $params en arguments
+            if (method_exists($this, $method)) {
+                call_user_func_array([$this, $method], $params);
+            } else {
+                echo "<p>Méthode '$method' introuvable.</p>";
+            }
         } catch (Error $e) {
+            echo "<p>Erreur : " . $e->getMessage() . "</p>";
         }
     }
+
+    // Affiche tous les films
     public function show(array $params = [])
     {
-        // Préparation de la variable $id à afficher dans la vue
-        $id = $params[0];
-
-        // Récupération d'un film
         $filmModel = new FilmModel();
-        $film = $filmModel->get($id);
+        $getFilms = $filmModel->getAll(); // récupère tous les films
+        console($getFilms);
+        // // Rendre les variables accessibles dans la vue
+        // $data = ['getFilms' => $getFilms];
+        // extract($data);
 
-
-        // Affichage de la vue
         require_once(__DIR__ . "/../views/home.php");
     }
 }

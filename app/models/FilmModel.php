@@ -40,12 +40,13 @@ class FilmModel
 
         // Formater la réponse dans un tableau de ProductEntity
         $filmsEntity = [];
-        foreach ($rawFilms as $rawfilm) {
+        foreach ($rawFilms as $rawFilm) {
             $filmsEntity[] = new FilmEntity(
                 $rawFilm["nom"],
                 $rawFilm["date_sortie"],
                 $rawFilm["genre"],
-                $rawFilm["auteur"]
+                $rawFilm["auteur"],
+                $rawFilm["id"]
             );
         }
 

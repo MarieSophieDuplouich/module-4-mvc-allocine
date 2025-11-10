@@ -32,7 +32,7 @@ class Router
         switch ($controllerName) {
             case 'product':
                 return new ProductController();
-
+            
             case '':
                 return new HomeController();
                 break;
