@@ -84,9 +84,10 @@ class ProductModel
     public function add($nom,$date_sortie,$genre,$auteur): void
     {
         $this->addFilm->execute([
-            ':name' => $nom,
-            ':price' => $price,
-            ':image' => $image
+            ':nom' => $nom,
+            ':date_sortie' => $date_sortie,
+            ':genre' => $genre,
+            ':auteur' => $auteur
         ]);
     }
 
@@ -97,25 +98,28 @@ class ProductModel
      * */
     public function del(int $id): void
     {
-        $this->delProduct->execute([':id' => $id]);
+        $this->delFilm->execute([':id' => $id]);
     }
 
     /**
      * Modifier un produit
-     * @return ProductEntity ou NULL : Le produit modifié après modification ou NULL si l'id n'existe pas.
+     * @return FilmEntity ou NULL : Le produit modifié après modification ou NULL si l'id n'existe pas.
      * @param int $id l'identifiant du produit, ce paramètre ne défini pas la nouvelle valeur de l'id car un id SQL est immuable, mais permet de définir quelle produit modifier.
      * */
     public function edit(
-        int $id,
-        string $name,
-        float $price,
-        string $image
-    ): ProductEntity | NULL {
-        $this->editProduct->execute([
+        $nom,
+        $date_sortie,
+        $genre,
+        $auteur
+
+    ): FilmEntity | NULL {
+        $this->editFilm->execute([
             ':id' => $id,
-            ':name' => $name,
-            ':price' => $price,
-            ':image' => $image
+            ':nom' => $nom,
+            ':date_sortie' => $date_sortie,
+            ':genre' => $genre,
+            ':auteur' => $auteur
+
         ]);
 
         return $this->get($id);
@@ -127,62 +131,71 @@ class ProductModel
 
 //entity
 
-class ProductEntity
+class FilmEntity
 {  //champs sql
 
-    private $name;
-    private $price;
-    private $image;
+    private $nom;
+    private $date_sortie;
+    private $genre;
     private $id;
+
+     private $auteur;
+
     //LOGIQUE MÉTIER
     private const NAME_MIN_LENGTH = 3;
     private const PRICE_MIN = 0;
     private const DEFAULT_IMG_URL = "/public/images/default.png";
+
+
+
     //CONSTRUCTEUR
-    function __construct(string $name, float $price, string $image, int $id = NULL)
+    function __construct($nom,$date_sortie,$genre,$auteur, $id)
     {
-        $this->setName($name);
-        $this->setPrice($price);
-        $this->setImage($image);
+        $this->setName($nom);
+        $this->setDateSortie($date_sortie);
+        $this->setGenre($genre);
+        $this->setAuteur($auteur);
+
         $this->id = $id;
     }
 
     //SETTERS
-    public function setName(string $name)
+    public function setName(string $nom)
     {
-        if (strlen($name) < $this::NAME_MIN_LENGTH) {
+        if (strlen($nom) < $this::NAME_MIN_LENGTH) {
             throw new Error("Name is too short minimum 
             length is " . $this::NAME_MIN_LENGTH);
         }
-        $this->name = $name;
+        $this->nom = $nom;
     }
-    public function setPrice(float $price)
+    public function setDateSortie($date_sortie)
     {
-        if ($price < 0) {
-            throw new Error("Price is too short minimum price is " . $this::PRICE_MIN);
-        }
-        $this->price = $price;
+     
+        $this->date_sortie= $date_sortie;
     }
-    public function setImage(string $image)
+    public function setGenre(string $genre)
     {
-        if (strlen($image) <= 0) {
-            $this->image = $this::DEFAULT_IMG_URL;
+        if (strlen($genre) <= 0) {
+          
         }
-        $this->image = $image;
+        $this->genre = $genre;
     }
 
     //GETTERS
     public function getName(): string
     {
-        return $this->name;
+        return $this->nom;
     }
-    public function getPrice(): float
+    public function getDateSortie()
     {
-        return $this->price;
+        return $this->date_sortie;
+    public function getGenre()
+    {
+        return $this->genre;
     }
-    public function getImage(): string
+      public function getAuteur()
     {
-        return $this->image;
+        return $this->auteur;
     }
     public function getId(): int
     {
