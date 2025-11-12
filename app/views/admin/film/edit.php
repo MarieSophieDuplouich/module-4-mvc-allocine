@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Modifier un film</h1>
-    <form action="/film/update/<?= $film->getId() ?>" method="post">
+    <form action="/film/edit/<?= $film->getId() ?>" method="post">
         <label>Nom du film</label>
         <input type="text" name="nom" value="<?= htmlspecialchars($film->getName()) ?>" required>
         

@@ -52,7 +52,7 @@
                                 <td><?= $film->getGenre() ?></td>
                                 <td><?= htmlspecialchars($film->getAuteur()) ?></td>
                                 <td>
-                                    <a href="/admin/film/edit/<?= $film->getId() ?>" class="btn-edit">Modifier</a>
+                                    <a href="/film/edit/<?= $film->getId() ?>" class="btn-edit">Modifier</a>
                                     <a href="/film/del/<?= $film->getId() ?>" class="btn-delete">Supprimer</a>
                                 </td>
                             </tr>

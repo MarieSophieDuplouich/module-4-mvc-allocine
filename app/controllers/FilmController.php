@@ -57,7 +57,19 @@ class FilmController
     public function edit($id): void
     {
         $filmModel = new FilmModel();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $filmModel->edit(
+            $id,
+            $_POST['nom'],
+            $_POST['date_sortie'],
+            $_POST['genre'],
+            $_POST['auteur']
+        );
+
+        
+    }
         $film = $filmModel->get($id);
+        
 
         if (!$film) {
             require_once(__DIR__ . "/../views/404.php");
