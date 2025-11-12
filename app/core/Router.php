@@ -52,4 +52,25 @@ class Router
                 break;
         }
     }
+
+    // public static function route()
+    // {
+    //     // Récupère uniquement le chemin, sans ?query=...
+    //     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+    //     // Découpe le chemin en segments
+    //     $url = explode('/', trim($uri, '/'));
+
+    //     $controllerName = $url[0] ?? '';
+    //     $method = $url[1] ?? 'show';
+    //     $params = array_slice($url, 2);
+
+    //     $controller = self::getController($controllerName);
+
+    //     if (method_exists($controller, $method)) {
+    //         $controller->view($method, $params);
+    //     } else {
+    //         (new NotFoundController())->view('show');
+    //     }
+    // }
 }

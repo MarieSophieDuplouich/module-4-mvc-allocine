@@ -24,7 +24,33 @@ class FilmModel
         $this->delFilm = $this->bdd->prepare("DELETE  FROM Film WHERE id =:id");
         $this->editFilm = $this->bdd->prepare("UPDATE Film SET  nom = :nom, date_sortie = :date_sortie, genre  = :genre, auteur = :auteur WHERE id = :id");
     }
+    
+    //Searchbar model
+  public function search(string $keyword): array
+{
+    $stmt = $this->bdd->prepare("
+        SELECT * FROM Film 
+        WHERE nom LIKE :kw 
+           OR genre LIKE :kw 
+           OR auteur LIKE :kw
+    ");
 
+    $stmt->execute([':kw' => "%$keyword%"]);
+    $rawFilms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $filmsEntity = [];
+    foreach ($rawFilms as $rawFilm) {
+        $filmsEntity[] = new FilmEntity(
+            $rawFilm["nom"],
+            $rawFilm["date_sortie"],
+            $rawFilm["genre"],
+            $rawFilm["auteur"],
+            (int)$rawFilm["id"]
+        );
+    }
+
+    return $filmsEntity;
+}
     /**
      * Renvoi les 50 premiers produits 
      * */
@@ -72,7 +98,7 @@ class FilmModel
             $rawFilm["nom"],
             $rawFilm["date_sortie"],
             $rawFilm["genre"],
-             $rawFilm["auteur"],
+            $rawFilm["auteur"],
             (int)$rawFilm["id"]
         );
     }
@@ -82,7 +108,7 @@ class FilmModel
      * @return void : ne renvoi rien
      * les informations de l'entity
      * */
-    public function add($nom,$date_sortie,$genre,$auteur): void
+    public function add($nom, $date_sortie, $genre, $auteur): void
     {
         $this->addFilm->execute([
             ':nom' => $nom,
@@ -141,7 +167,7 @@ class FilmEntity
     private $genre;
     private $id;
 
-     private $auteur;
+    private $auteur;
 
     //LOGIQUE MÉTIER
 
@@ -150,21 +176,21 @@ class FilmEntity
     // private const NAME_MIN_LENGTH = 3;
     // private const PRICE_MIN = 0;
     // private const DEFAULT_IMG_URL = "/public/images/default.png"; //ancien code 
-     private const NAME_MIN_LENGTH = 2;
-     private const GENRES_AUTORISES = [
-    'Action',
-    'Comédie',
-    'Drame',
-    'Horreur',
-    'Science-Fiction',
-    'Romance',
-    'Documentaire'
-];
+    private const NAME_MIN_LENGTH = 2;
+    private const GENRES_AUTORISES = [
+        'Action',
+        'Comédie',
+        'Drame',
+        'Horreur',
+        'Science-Fiction',
+        'Romance',
+        'Documentaire'
+    ];
 
 
 
     //CONSTRUCTEUR
-    function __construct($nom,$date_sortie,$genre,$auteur, $id)
+    function __construct($nom, $date_sortie, $genre, $auteur, $id)
     {
         $this->setName($nom);
         $this->setDateSortie($date_sortie);
@@ -185,8 +211,8 @@ class FilmEntity
     }
     public function setDateSortie($date_sortie)
     {
-     
-     $timestamp = strtotime($date_sortie);
+
+        $timestamp = strtotime($date_sortie);
         if (!$timestamp) {
             throw new Exception("La date de sortie n'est pas valide.");
         }
@@ -211,7 +237,7 @@ class FilmEntity
         $this->genre = $genre;
     }
 
-public function setAuteur(string $auteur): void
+    public function setAuteur(string $auteur): void
     {
         if (empty(trim($auteur))) {
             throw new Exception("Le nom de l'auteur ne peut pas être vide.");
@@ -233,7 +259,7 @@ public function setAuteur(string $auteur): void
     {
         return $this->genre;
     }
-      public function getAuteur()
+    public function getAuteur()
     {
         return $this->auteur;
     }
@@ -241,6 +267,7 @@ public function setAuteur(string $auteur): void
     {
         return $this->id;
     }
+
 }
 
 // ProductEntity

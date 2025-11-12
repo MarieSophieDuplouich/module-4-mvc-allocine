@@ -48,38 +48,22 @@ Exercice du 12 novembre 2025
 class FilmController
 
   Les routes sont :
-  http://localhost/film/ view/ 1
-  http://localhost/film/ details/ 1
-  http://localhost/film/ all/ 1
-  http://localhost/film/ delete/ 1
+  http://localhost/film/ 
+  http://localhost/film/ details
+  http://localhost/film/ all/
+  http://localhost/film/ delete
   
-  
- Les redirections sont require_once(__DIR__ . "/../views/view.php");
- 
- require_once(__DIR__ . "/../views/details.php");
- 
- require_once(__DIR__ . "/../views/all.php");
- 
-  require_once(__DIR__ . "/../views/delete.php");
-  
+
   
   class PokemonController
   
 
   Les routes sont : 
-  http://localhost/pokemon/ view/ 1
-  http://localhost/pokemon/ limit/ 1
-  http://localhost/pokemon/ evolution/ 1
-  http://localhost/pokemon/ get/ 1
+  http://localhost/pokemon/ 
+  http://localhost/pokemon/ limit
+  http://localhost/pokemon/ evolution
+  http://localhost/pokemon/ get
   
- Les redirections sont :
- require_once(__DIR__ . "/../views/view.php");
+
  
- require_once(__DIR__ . "/../views/limit.php");
- 
- require_once(__DIR__ . "/../views/evolution.php");
- 
- require_once(__DIR__ . "/../views/get.php");
-  
- 
- 
+ Les $_GET sont obsolètes ne pas les utiliser !!!!!

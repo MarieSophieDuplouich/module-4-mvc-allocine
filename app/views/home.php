@@ -17,8 +17,10 @@
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
   <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
+
+  <!-- je dois mettre quoi ici comme fichier php ou méthode pour afficher le film choisi? -->
+    <form action="/film/search" method="post" class="search-form">
+      <input type="text" placeholder="Search.." name="search"  value="<?= htmlspecialchars($_POST['search'] ?? '') ?>">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>

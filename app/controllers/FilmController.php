@@ -30,6 +30,25 @@ class FilmController
         //le crud de l'admin ci-dessous dans cette view dashboard
 
     }
+    //SearchBar controller getFilm ou getFilms ?
+public function search(array $params = [])
+{
+    $keyword = $_POST['search'] ?? '';
+    console($keyword);
+    $filmModel = new FilmModel();
+
+    if (!empty($keyword)) {
+        // Recherche par mot-clé
+        $films = $filmModel->search($keyword);
+    } else {
+        // Si aucun mot clé, on renvoie tous les films
+        $films = $filmModel->getAll();
+    }
+
+    console($films);
+
+    require_once(__DIR__ . "/../views/home.php");
+}
 
     public function dashboard(array $params = []): void
     {
@@ -87,11 +106,6 @@ class FilmController
         // exit;
     }
 
-    // public function store()
-    // {
-    //     $filmModel = new FilmModel();
-    //     $filmModel->add($_POST['nom'], $_POST['date_sortie'], $_POST['genre'], $_POST['auteur']);
-    //     header("Location: /admin/dashboard");
-    //     exit;
-    // }
+
+
 }
