@@ -1,0 +1,85 @@
+exemple de mon FilmController
+
+<?php require_once(__DIR__ . "/../models/FilmModel.php");
+
+class FilmController
+{
+    public function view(string $method, array $params = [])
+    {
+        try {
+            // call_user_func_array permet de décomposer le tableau $params en arguments
+            if (method_exists($this, $method)) {
+                call_user_func_array([$this, $method], $params);
+            } else {
+                echo "<p>Méthode '$method' introuvable.</p>";
+            }
+        } catch (Error $e) {
+            echo "<p>Erreur : " . $e->getMessage() . "</p>";
+        }
+    }
+
+    // Affiche tous les films
+    public function show(array $params = [])
+    {
+        $filmModel = new FilmModel();
+        $getFilms = $filmModel->getAll(); // récupère tous les films
+        console($getFilms);
+        // // Rendre les variables accessibles dans la vue
+        // $data = ['getFilms' => $getFilms];
+        // extract($data);
+        //j'aiffiche tous les films dans home.php
+        require_once(__DIR__ . "/../views/home.php");
+        //le crud de l'admin ci-dessous dans cette view dashboard
+
+    }
+
+    public function dashboard(array $params = []): void
+    {
+        $filmModel = new FilmModel();
+        $getFilms = $filmModel->getAll(); // récupère tous les films
+        require_once(__DIR__ . "/../views/admin/dashboard.php");
+    }
+}
+
+
+
+
+Exercice du 12 novembre 2025 
+class FilmController
+
+  Les routes sont :
+  http://localhost/film/ view/ 1
+  http://localhost/film/ details/ 1
+  http://localhost/film/ all/ 1
+  http://localhost/film/ delete/ 1
+  
+  
+ Les redirections sont require_once(__DIR__ . "/../views/view.php");
+ 
+ require_once(__DIR__ . "/../views/details.php");
+ 
+ require_once(__DIR__ . "/../views/all.php");
+ 
+  require_once(__DIR__ . "/../views/delete.php");
+  
+  
+  class PokemonController
+  
+
+  Les routes sont : 
+  http://localhost/pokemon/ view/ 1
+  http://localhost/pokemon/ limit/ 1
+  http://localhost/pokemon/ evolution/ 1
+  http://localhost/pokemon/ get/ 1
+  
+ Les redirections sont :
+ require_once(__DIR__ . "/../views/view.php");
+ 
+ require_once(__DIR__ . "/../views/limit.php");
+ 
+ require_once(__DIR__ . "/../views/evolution.php");
+ 
+ require_once(__DIR__ . "/../views/get.php");
+  
+ 
+ 
