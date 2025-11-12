@@ -65,12 +65,14 @@ class FilmController
         }
         require_once(__DIR__ . "/../views/admin/film/edit.php");
     }
-    public function delete($id)
+
+
+    public function del($id)
     {
         $filmModel = new FilmModel();
         $filmModel->del($id);
-        header("Location: /admin/dashboard");
-        exit;
+        // header("Location: /admin/dashboard");
+        // exit;
     }
 
     // public function store()
