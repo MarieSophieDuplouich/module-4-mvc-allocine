@@ -37,4 +37,47 @@ class FilmController
         $getFilms = $filmModel->getAll(); // récupère tous les films
         require_once(__DIR__ . "/../views/admin/dashboard.php");
     }
+
+
+    public function add(array $params = []): void
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // On traite le formulaire
+        $filmModel = new FilmModel();
+        $filmModel->add($_POST['nom'], $_POST['date_sortie'], $_POST['genre'], $_POST['auteur']);
+
+     
+    }
+
+        require_once(__DIR__ . "/../views/admin/film/add.php");
+    }
+
+
+    public function edit($id): void
+    {
+        $filmModel = new FilmModel();
+        $film = $filmModel->get($id);
+
+        if (!$film) {
+            require_once(__DIR__ . "/../views/404.php");
+            return;
+        }
+        require_once(__DIR__ . "/../views/admin/film/edit.php");
+    }
+    public function delete($id)
+    {
+        $filmModel = new FilmModel();
+        $filmModel->del($id);
+        header("Location: /admin/dashboard");
+        exit;
+    }
+
+    // public function store()
+    // {
+    //     $filmModel = new FilmModel();
+    //     $filmModel->add($_POST['nom'], $_POST['date_sortie'], $_POST['genre'], $_POST['auteur']);
+    //     header("Location: /admin/dashboard");
+    //     exit;
+    // }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Ajouter un film</h1>
-    <form action="/film/store" method="post">
+    <form action="/film/add" method="post">
         <label>Nom du film</label>
         <input type="text" name="nom" required>
         
