@@ -39,13 +39,13 @@ public function search(array $params = [])
 
     if (!empty($keyword)) {
         // Recherche par mot-clé
-        $films = $filmModel->search($keyword);
+        $getFilms = $filmModel->search($keyword);
     } else {
         // Si aucun mot clé, on renvoie tous les films
-        $films = $filmModel->getAll();
+        $getFilms = $filmModel->getAll();
     }
 
-    console($films);
+    console($getFilms);
 
     require_once(__DIR__ . "/../views/home.php");
 }
