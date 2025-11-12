@@ -151,7 +151,15 @@ class FilmEntity
     // private const PRICE_MIN = 0;
     // private const DEFAULT_IMG_URL = "/public/images/default.png"; //ancien code 
      private const NAME_MIN_LENGTH = 2;
-    private const GENRES_AUTORISES = ['Action', 'Comédie', 'Drame', 'Horreur', 'Animation', 'Documentaire'];
+     private const GENRES_AUTORISES = [
+    'Action',
+    'Comédie',
+    'Drame',
+    'Horreur',
+    'Science-Fiction',
+    'Romance',
+    'Documentaire'
+];
 
 
 

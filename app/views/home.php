@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <!-- <header>
+    <header>
      <h1>Accueil Allociné</h1>
     
     </header>
-    -->
+   
 
     <form action="">
         <div class="box">
