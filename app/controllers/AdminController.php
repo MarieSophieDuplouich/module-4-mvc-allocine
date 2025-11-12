@@ -6,7 +6,11 @@ Créez un controller AdminController avec le CLI nouvellement créé et ajoutez 
 Ajoutez un controller UserController avec les routes suivantes :
 /user/profile -> UserController::profile
 /user/settings -> UserController::settings -->
+
+
 <?php
+require_once(__DIR__ . "/../models/FilmModel.php");
+
 class AdminController
 {     //ci-dessous méthode qui appelle les routes et en dessous d'elle ce sont ls soeurs
      public function view(string $method, array $params = [])
@@ -20,7 +24,8 @@ class AdminController
         }
     }
     public function dashboard()
-    {
+    {        $filmModel = new FilmModel();
+        $getFilms = $filmModel->getAll();
  
             require_once(__DIR__."/../views/admin/dashboard.php");
       

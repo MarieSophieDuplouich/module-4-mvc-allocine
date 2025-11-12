@@ -10,8 +10,8 @@
 
     <nav>
         <ul>
-            <li><a href="/first_mvc/admin/dashboard">Dashboard</a></li>
-            <li><a href="/first_mvc/admin/users">Utilisateurs</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Utilisateurs</a></li>
         </ul>
     </nav>
 

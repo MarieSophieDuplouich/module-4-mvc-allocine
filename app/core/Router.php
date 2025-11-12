@@ -23,6 +23,7 @@ require_once(__DIR__ . "/../controllers/ProductController.php");
 require_once(__DIR__ . "/../controllers/HomeController.php");
 require_once(__DIR__ . "/../controllers/AdminController.php");
 require_once(__DIR__ . "/../controllers/UserController.php");
+require_once(__DIR__ . "/../controllers/FilmController.php");
 require_once(__DIR__ . "/../controllers/NotFoundController.php");
 
 class Router
@@ -32,15 +33,18 @@ class Router
         switch ($controllerName) {
             case 'product':
                 return new ProductController();
-            
+
             case '':
                 return new HomeController();
                 break;
             case 'user':
                 return new UserController();
                 break;
-                   case 'admin':
+            case 'admin':
                 return new AdminController();
+                break;
+            case 'film':
+                return new FilmController();
                 break;
             default:
                 // Si aucune route de match
